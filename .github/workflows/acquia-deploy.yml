@@ -54,5 +54,3 @@ jobs:
 
       - name: Run PHPStan analysis
         run: vendor/bin/phpstan analyse
-
-
