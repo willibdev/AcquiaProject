@@ -8,6 +8,9 @@ use Drupal\Core\Routing\TrustedRedirectResponse;
 use Drupal\Core\Session\AccountInterface;
 use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 
+/**
+ * Documents this element.
+ */
 final readonly class LogoutResponseGenerator {
 
   public function __construct(

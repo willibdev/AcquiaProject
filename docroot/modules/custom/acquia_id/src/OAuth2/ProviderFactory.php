@@ -8,6 +8,9 @@ use Drupal\Core\Http\ClientFactory;
 use Drupal\Core\Url;
 use Drupal\acquia_id\OAuth2\Provider\AcquiaIdProvider;
 
+/**
+ * Documents this element.
+ */
 class ProviderFactory {
 
   public function __construct(
@@ -18,6 +21,9 @@ class ProviderFactory {
   ) {
   }
 
+  /**
+   * Documents this element.
+   */
   public function get(): AcquiaIdProvider {
     $provider = new AcquiaIdProvider([
       'clientId' => $this->clientId,
@@ -30,6 +36,9 @@ class ProviderFactory {
     return $provider;
   }
 
+  /**
+   * Documents this element.
+   */
   private function getRedirectUri(): string {
     return Url::fromRoute('acquia_id.sso')
       ->setAbsolute()

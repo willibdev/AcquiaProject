@@ -9,10 +9,16 @@ use Drupal\Tests\UnitTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
 
+/**
+ * Documents this element.
+ */
 #[CoversClass(AcquiaIdResourceOwner::class)]
 #[Group('acquia_id')]
 class AcquiaIdResourceOwnerTest extends UnitTestCase {
 
+  /**
+   * Documents this element.
+   */
   public function testGetIdReturnsMail(): void {
     $owner = new AcquiaIdResourceOwner([
       'mail' => 'user@example.com',
@@ -22,6 +28,9 @@ class AcquiaIdResourceOwnerTest extends UnitTestCase {
     $this->assertSame('user@example.com', $owner->getId());
   }
 
+  /**
+   * Documents this element.
+   */
   public function testToArrayReturnsFullResponse(): void {
     $data = [
       'mail' => 'user@example.com',

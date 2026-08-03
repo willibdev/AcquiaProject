@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\acquia_id\Kernel\Controller;
 
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Symfony\Component\DependencyInjection\Reference;
 use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\Core\Url;
 use Drupal\KernelTests\KernelTestBase;
@@ -22,6 +24,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpKernel\TerminableInterface;
 
+/**
+ * Documents this element.
+ */
 #[CoversClass(OAuth2Controller::class)]
 #[Group('acquia_id')]
 #[RunTestsInSeparateProcesses]
@@ -63,18 +68,26 @@ class OAuth2ControllerTest extends KernelTestBase {
     // being caught by Drupal's exception subscribers.
     $container->register('http_kernel.test', TestHttpKernel::class)
       ->setDecoratedService('http_kernel.basic')
-      ->addArgument(new \Symfony\Component\DependencyInjection\Reference('http_kernel.test.inner'));
+      ->addArgument(new Reference('http_kernel.test.inner'));
 
     // Override after AcquiaIdServiceProvider::alter() sets staging URLs.
     $container->addCompilerPass(new class implements CompilerPassInterface {
+
+      /**
+       * Documents this element.
+       */
       public function process(SymfonyContainerBuilder $container): void {
         $container->setParameter('acquia_id.idp_base_uri', 'https://id.acquia.com/oauth2/default');
         $container->setParameter('acquia_id.cloud_api_base_uri', 'https://cloud.acquia.com');
         $container->setParameter('acquia_id.idp_logout_redirect_uri', 'https://cloud.acquia.com');
       }
+
     }, priority: -200);
   }
 
+  /**
+   * Documents this element.
+   */
   public function testInitialVisitRedirectsToIdp(): void {
     $response = $this->doRequest(
       Request::create(Url::fromRoute('acquia_id.sso')->toString()),
@@ -98,6 +111,9 @@ class OAuth2ControllerTest extends KernelTestBase {
     $this->assertStringContainsString('offline_access', $params['scope']);
   }
 
+  /**
+   * Documents this element.
+   */
   public function testDestinationIsPreservedInSession(): void {
     $response = $this->doRequest(
       Request::create(Url::fromRoute('acquia_id.sso', [], [
@@ -112,8 +128,11 @@ class OAuth2ControllerTest extends KernelTestBase {
     );
   }
 
+  /**
+   * Documents this element.
+   */
   public function testMissingStateThrowsAccessDenied(): void {
-    $this->expectException(\Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException::class);
+    $this->expectException(AccessDeniedHttpException::class);
     $this->expectExceptionMessage('Missing state');
 
     $this->doRequest(
@@ -123,8 +142,11 @@ class OAuth2ControllerTest extends KernelTestBase {
     );
   }
 
+  /**
+   * Documents this element.
+   */
   public function testMismatchedStateThrowsAccessDenied(): void {
-    $this->expectException(\Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException::class);
+    $this->expectException(AccessDeniedHttpException::class);
     $this->expectExceptionMessage('Invalid state');
 
     $this->doRequest(
@@ -137,6 +159,9 @@ class OAuth2ControllerTest extends KernelTestBase {
     );
   }
 
+  /**
+   * Documents this element.
+   */
   public function testErrorFromIdpRedirectsToLogoutUri(): void {
     // First, initiate the flow to set state in session.
     $this->doRequest(
@@ -162,6 +187,9 @@ class OAuth2ControllerTest extends KernelTestBase {
     );
   }
 
+  /**
+   * Documents this element.
+   */
   public function testExceptionSubrequestResetsQueryParams(): void {
     $request = Request::create(Url::fromRoute('acquia_id.sso', [], [
       'query' => [
@@ -179,12 +207,18 @@ class OAuth2ControllerTest extends KernelTestBase {
     );
   }
 
+  /**
+   * Documents this element.
+   */
   public function testSsoRouteAccessAnonymousAllowed(): void {
     $access_manager = $this->container->get('access_manager');
     $result = $access_manager->checkNamedRoute('acquia_id.sso', []);
     $this->assertTrue($result);
   }
 
+  /**
+   * Documents this element.
+   */
   public function testSsoRouteAccessAuthenticatedWithoutTokenAllowed(): void {
     $access_manager = $this->container->get('access_manager');
     $user = $this->setUpCurrentUser();
@@ -192,6 +226,9 @@ class OAuth2ControllerTest extends KernelTestBase {
     $this->assertTrue($result);
   }
 
+  /**
+   * Documents this element.
+   */
   public function testSsoRouteAccessAuthenticatedWithToken(): void {
     $access_manager = $this->container->get('access_manager');
     $user = $this->setUpCurrentUser();
@@ -211,6 +248,9 @@ class OAuth2ControllerTest extends KernelTestBase {
     $this->assertTrue($result);
   }
 
+  /**
+   * Documents this element.
+   */
   public function testAuthenticatedWithTokenShowsAlreadyLoggedIn(): void {
     $user = $this->setUpCurrentUser();
 
@@ -233,6 +273,9 @@ class OAuth2ControllerTest extends KernelTestBase {
     $this->assertStringContainsString('Continue', $response->getContent());
   }
 
+  /**
+   * Documents this element.
+   */
   public function testAuthenticatedWithTokenAndDestinationRedirects(): void {
     $user = $this->setUpCurrentUser();
 
@@ -280,6 +323,9 @@ final class TestHttpKernel implements HttpKernelInterface, TerminableInterface {
     private readonly HttpKernelInterface $httpKernel,
   ) {}
 
+  /**
+   * Documents this element.
+   */
   public function handle(
     Request $request,
     int $type = self::MAIN_REQUEST,
@@ -288,6 +334,9 @@ final class TestHttpKernel implements HttpKernelInterface, TerminableInterface {
     return $this->httpKernel->handle($request, $type, FALSE);
   }
 
+  /**
+   * Documents this element.
+   */
   public function terminate(Request $request, Response $response): void {
     if ($this->httpKernel instanceof TerminableInterface) {
       $this->httpKernel->terminate($request, $response);

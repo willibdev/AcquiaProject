@@ -12,6 +12,9 @@ use Drupal\acquia_trials_id\Api\ClientFactory;
 use GuzzleHttp\Exception\GuzzleException;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
+/**
+ * Documents this element.
+ */
 final class OAuth2AuthorizationEventSubscriber implements EventSubscriberInterface {
 
   public function __construct(

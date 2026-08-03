@@ -2,6 +2,7 @@
 
 namespace Drupal\acquia_trials_countdown;
 
+use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Psr7\Response;
 use Psr\Log\LoggerInterface;
@@ -37,7 +38,7 @@ class TrialEndClient {
         'json' => ['subscription_id' => $subscriptionId],
       ]);
     }
-    catch (\GuzzleHttp\Exception\GuzzleException $e) {
+    catch (GuzzleException $e) {
       // If any type of GuzzleException is thrown, just log it and provide a default expiration of a few days from now.
       $response = $this->getMockResponse();
       $this->logger->error($e->getMessage());
@@ -54,6 +55,9 @@ class TrialEndClient {
     return (int) $data['timestamp'];
   }
 
+  /**
+   * Documents this element.
+   */
   private function getMockResponse(): Response {
     return new Response(
       200,

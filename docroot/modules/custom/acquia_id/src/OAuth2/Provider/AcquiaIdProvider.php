@@ -12,15 +12,27 @@ use League\OAuth2\Client\Token\AccessToken;
  */
 class AcquiaIdProvider extends IdpProvider {
 
+  /**
+   * The base URI for the identity provider.
+   */
   private string $idpBaseUri;
 
+  /**
+   * The base URI for the Acquia Cloud API.
+   */
   private string $cloudApiBaseUri;
 
+  /**
+   * Documents this element.
+   */
   public function setIdpBaseUri(string $baseUri): self {
     $this->idpBaseUri = $baseUri;
     return $this;
   }
 
+  /**
+   * Documents this element.
+   */
   public function setCloudApiBaseUri(string $baseUri): self {
     $this->cloudApiBaseUri = $baseUri;
     return $this;

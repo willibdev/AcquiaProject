@@ -6,6 +6,9 @@ namespace Drupal\acquia_trials_id\Api;
 
 use Drupal\Core\Http\ClientFactory as HttpClientFactory;
 
+/**
+ * Documents this element.
+ */
 final readonly class ClientFactory {
 
   public function __construct(
@@ -13,6 +16,9 @@ final readonly class ClientFactory {
     private string $baseUri,
   ) {}
 
+  /**
+   * Documents this element.
+   */
   public function get(string $accessToken): Client {
     return new Client($this->httpClientFactory->fromOptions([
       'base_uri' => $this->baseUri,

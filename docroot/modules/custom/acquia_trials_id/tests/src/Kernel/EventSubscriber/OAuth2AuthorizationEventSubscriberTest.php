@@ -13,15 +13,15 @@ use Drupal\Tests\acquia_id\Kernel\HttpClientMiddleware\MockedCloudApiMiddleware;
 use Drupal\Tests\acquia_id\Kernel\HttpClientMiddleware\MockedIdpMiddleware;
 use Drupal\Tests\user\Traits\UserCreationTrait;
 use Drupal\acquia_id\Events\OAuth2AuthorizationEvent;
-use Drupal\acquia_id\OAuth2\Provider\AcquiaIdProvider;
-use Drupal\acquia_id\OAuth2\Provider\IdpProvider;
 use Drupal\acquia_trials_id\EventSubscriber\OAuth2AuthorizationEventSubscriber;
-use League\OAuth2\Client\Provider\ResourceOwnerInterface;
 use League\OAuth2\Client\Token\AccessToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 
+/**
+ * Documents this element.
+ */
 #[CoversClass(OAuth2AuthorizationEventSubscriber::class)]
 #[Group('acquia_trials_id')]
 #[RunTestsInSeparateProcesses]
@@ -63,14 +63,22 @@ class OAuth2AuthorizationEventSubscriberTest extends KernelTestBase {
 
     // Override after AcquiaIdServiceProvider::alter() sets staging URLs.
     $container->addCompilerPass(new class implements CompilerPassInterface {
+
+      /**
+       * Documents this element.
+       */
       public function process(SymfonyContainerBuilder $container): void {
         $container->setParameter('acquia_id.idp_base_uri', 'https://id.acquia.com/oauth2/default');
         $container->setParameter('acquia_id.cloud_api_base_uri', 'https://cloud.acquia.com');
         $container->setParameter('acquia_id.idp_logout_redirect_uri', 'https://cloud.acquia.com');
       }
+
     }, priority: -200);
   }
 
+  /**
+   * Documents this element.
+   */
   public function testThrowsWhenApplicationUuidNotAvailable(): void {
     // Ensure AH_APPLICATION_UUID is not set.
     $original = getenv('AH_APPLICATION_UUID');
@@ -90,6 +98,9 @@ class OAuth2AuthorizationEventSubscriberTest extends KernelTestBase {
     }
   }
 
+  /**
+   * Documents this element.
+   */
   public function testThrowsWhenUserLacksApplicationAccess(): void {
     putenv('AH_APPLICATION_UUID=test-app-uuid');
 
@@ -105,6 +116,9 @@ class OAuth2AuthorizationEventSubscriberTest extends KernelTestBase {
     }
   }
 
+  /**
+   * Documents this element.
+   */
   public function testCreatesNewUserOnFirstSso(): void {
     putenv('AH_APPLICATION_UUID=test-app-uuid');
 
@@ -126,6 +140,9 @@ class OAuth2AuthorizationEventSubscriberTest extends KernelTestBase {
     }
   }
 
+  /**
+   * Documents this element.
+   */
   public function testLoadsExistingUserByEmail(): void {
     putenv('AH_APPLICATION_UUID=test-app-uuid');
 

@@ -13,12 +13,21 @@ use PHPUnit\Framework\Attributes\Group;
 use Psr\Http\Message\StreamInterface;
 use Psr\Log\LoggerInterface;
 
+/**
+ * Documents this element.
+ */
 #[CoversClass(TrialEndClient::class)]
 #[Group('acquia_trials_countdown')]
 class TrialEndClientTest extends UnitTestCase {
 
+  /**
+   * The logger used by the client under test.
+   */
   protected LoggerInterface $logger;
 
+  /**
+   * Documents this element.
+   */
   protected function setUp(): void {
     parent::setUp();
     $this->logger = $this->createMock(LoggerInterface::class);

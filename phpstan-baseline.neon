@@ -1,0 +1,121 @@
+parameters:
+	ignoreErrors:
+		-
+			rawMessage: 'Function acquia_id_form_user_login_form_alter() has parameter $form with no value type specified in iterable type array.'
+			identifier: missingType.iterableValue
+			count: 1
+			path: docroot/modules/custom/acquia_id/acquia_id.module
+
+		-
+			rawMessage: 'Method Drupal\acquia_id\Controller\OAuth2Controller::__invoke() return type has no value type specified in iterable type array.'
+			identifier: missingType.iterableValue
+			count: 1
+			path: docroot/modules/custom/acquia_id/src/Controller/OAuth2Controller.php
+
+		-
+			rawMessage: 'Method Drupal\acquia_id\OAuth2\Provider\AcquiaIdProvider::createResourceOwner() has parameter $response with no value type specified in iterable type array.'
+			identifier: missingType.iterableValue
+			count: 1
+			path: docroot/modules/custom/acquia_id/src/OAuth2/Provider/AcquiaIdProvider.php
+
+		-
+			rawMessage: 'Method Drupal\acquia_id\OAuth2\Provider\AcquiaIdProvider::getBaseAccessTokenUrl() has parameter $params with no value type specified in iterable type array.'
+			identifier: missingType.iterableValue
+			count: 1
+			path: docroot/modules/custom/acquia_id/src/OAuth2/Provider/AcquiaIdProvider.php
+
+		-
+			rawMessage: 'Parameter #1 $response of class Drupal\acquia_id\OAuth2\Provider\AcquiaIdResourceOwner constructor expects array{mail: string, timezone: string, uuid: string, first_name?: string, last_name?: string, company?: string, zoneinfo?: string, sub?: string}, array given.'
+			identifier: argument.type
+			count: 1
+			path: docroot/modules/custom/acquia_id/src/OAuth2/Provider/AcquiaIdProvider.php
+
+		-
+			rawMessage: 'Method Drupal\acquia_id\OAuth2\Provider\IdpProvider::checkResponse() has parameter $data with no value type specified in iterable type array.'
+			identifier: missingType.iterableValue
+			count: 1
+			path: docroot/modules/custom/acquia_id/src/OAuth2/Provider/IdpProvider.php
+
+		-
+			rawMessage: 'Function acquia_trials_checklist_checklistapi_checklist_info() return type has no value type specified in iterable type array.'
+			identifier: missingType.iterableValue
+			count: 1
+			path: docroot/modules/custom/acquia_trials_checklist/acquia_trials_checklist.module
+
+		-
+			rawMessage: 'Function acquia_trials_checklist_get_items() return type has no value type specified in iterable type array.'
+			identifier: missingType.iterableValue
+			count: 1
+			path: docroot/modules/custom/acquia_trials_checklist/acquia_trials_checklist.module
+
+		-
+			rawMessage: 'Function acquia_trials_checklist_theme() return type has no value type specified in iterable type array.'
+			identifier: missingType.iterableValue
+			count: 1
+			path: docroot/modules/custom/acquia_trials_checklist/acquia_trials_checklist.module
+
+		-
+			rawMessage: 'Comparison operation ">" between int<1, max> and 0 is always true.'
+			identifier: greater.alwaysTrue
+			count: 1
+			path: docroot/modules/custom/acquia_trials_checklist/src/Controller/ChecklistToggleController.php
+
+		-
+			rawMessage: 'Method Drupal\acquia_trials_checklist\Plugin\Block\TrialsChecklistBlock::build() return type has no value type specified in iterable type array.'
+			identifier: missingType.iterableValue
+			count: 1
+			path: docroot/modules/custom/acquia_trials_checklist/src/Plugin/Block/TrialsChecklistBlock.php
+
+		-
+			rawMessage: 'Method Drupal\acquia_trials_checklist\Plugin\Block\TrialsChecklistBlock::defaultConfiguration() return type has no value type specified in iterable type array.'
+			identifier: missingType.iterableValue
+			count: 1
+			path: docroot/modules/custom/acquia_trials_checklist/src/Plugin/Block/TrialsChecklistBlock.php
+
+		-
+			rawMessage: 'Function acquia_trials_cloud_platform_theme() return type has no value type specified in iterable type array.'
+			identifier: missingType.iterableValue
+			count: 1
+			path: docroot/modules/custom/acquia_trials_cloud_platform/acquia_trials_cloud_platform.module
+
+		-
+			rawMessage: 'Method Drupal\acquia_trials_cloud_platform\Plugin\Block\TrialsCloudPlatformBlock::build() return type has no value type specified in iterable type array.'
+			identifier: missingType.iterableValue
+			count: 1
+			path: docroot/modules/custom/acquia_trials_cloud_platform/src/Plugin/Block/TrialsCloudPlatformBlock.php
+
+		-
+			rawMessage: 'Method Drupal\acquia_trials_cloud_platform\Plugin\Block\TrialsCloudPlatformBlock::defaultConfiguration() return type has no value type specified in iterable type array.'
+			identifier: missingType.iterableValue
+			count: 1
+			path: docroot/modules/custom/acquia_trials_cloud_platform/src/Plugin/Block/TrialsCloudPlatformBlock.php
+
+		-
+			rawMessage: 'Function acquia_trials_countdown_install() has no return type specified.'
+			identifier: missingType.return
+			count: 1
+			path: docroot/modules/custom/acquia_trials_countdown/acquia_trials_countdown.install
+
+		-
+			rawMessage: 'Function acquia_trials_countdown_uninstall() has no return type specified.'
+			identifier: missingType.return
+			count: 1
+			path: docroot/modules/custom/acquia_trials_countdown/acquia_trials_countdown.install
+
+		-
+			rawMessage: 'Function acquia_trials_countdown_cron() has no return type specified.'
+			identifier: missingType.return
+			count: 1
+			path: docroot/modules/custom/acquia_trials_countdown/acquia_trials_countdown.module
+
+		-
+			rawMessage: 'Function acquia_trials_countdown_page_attachments() has no return type specified.'
+			identifier: missingType.return
+			count: 1
+			path: docroot/modules/custom/acquia_trials_countdown/acquia_trials_countdown.module
+
+		-
+			rawMessage: 'Function acquia_trials_countdown_page_attachments() has parameter $attachments with no value type specified in iterable type array.'
+			identifier: missingType.iterableValue
+			count: 1
+			path: docroot/modules/custom/acquia_trials_countdown/acquia_trials_countdown.module
