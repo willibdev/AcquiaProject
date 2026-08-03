@@ -2,20 +2,25 @@
 <ruleset name="CS Drupal 11">
   <description>PHP CodeSniffer configuration for Drupal 11.</description>
 
-  <rule ref="Drupal" />
-  <rule ref="DrupalPractice"/>
   <arg name="extensions" value="php,module,inc,install,profile,theme,info,txt,yml"/>
 
-  <!-- Show progress and colors -->
+  <!-- Set up ignores. -->
+  <config name="ignore_warnings_on_exit" value="0" />
+  <config name="ignore_errors_on_exit" value="0" />
+  <arg name="ignore" value="*.js,*.css,*.scss,*.md,*.txt,*.TTF"/>
   <arg name="colors"/>
+
+  <!-- Specify standards. -->
+  <rule ref="Drupal" />
+  <rule ref="DrupalPractice"/>
 
   <!-- Directories to scan -->
   <!-- <file>docroot/themes/custom</file> -->
   <file>docroot/modules/custom</file>
 
   <!-- Exclude third-party node modules or vendor code -->
+  <exclude-pattern>docroot/modules/contrib</exclude-pattern>
   <exclude-pattern>*/node_modules/*</exclude-pattern>
-  <exclude-pattern>*/vendor/*</exclude-pattern>
 
   <!-- kill frivolous comments. -->
   <exclude name="Drupal.Commenting.ClassComment.Missing"/>
