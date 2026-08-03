@@ -1,0 +1,24 @@
+uuid: 6855546d-fb74-462c-bfa7-580a5477622c
+langcode: en
+status: true
+dependencies:
+  module:
+    - acquia_trials_cloud_platform
+_core:
+  default_config_hash: 21DElp0UEhgadDNuByPDL0zkHE_bL7cBbYrd5-Qr2ZY
+label: 'Acquia Trials Cloud Platform'
+id: block.acquia_trials_cloud_platform
+source: block
+source_local_id: acquia_trials_cloud_platform
+provider: acquia_trials_cloud_platform
+active_version: cad442953e56c032
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: acquia_trials_cloud_platform
+        label: 'Acquia Trials Cloud Platform'
+        label_display: '0'
+        provider: acquia_trials_cloud_platform
+    fallback_metadata:
+      slot_definitions: null

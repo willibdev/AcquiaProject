@@ -1,0 +1,22 @@
+name: "Composer validations"
+description: "Run composer validations such PHPCS, PHPStan and Composer audit"
+
+runs:
+  using: "composite"
+  steps:
+    - name: "Setup PHP"
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.3'
+        extensions: dom, curl, libxml, mbstring, zip, pdo, mysql, pdo_mysql, bcmath, gd, exif, iconv
+
+    - name: Cache Composer dependencies
+      uses: actions/cache@v5
+      with:
+        path: ~/.cache/composer
+        key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+        restore-keys: ${{ runner.os }}-composer-
+
+    - name: Validate the syntax of the composer.json file
+      shell: bash
+      run: composer validate --no-check-all

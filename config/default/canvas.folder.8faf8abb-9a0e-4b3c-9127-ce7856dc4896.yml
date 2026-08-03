@@ -1,0 +1,11 @@
+uuid: 8faf8abb-9a0e-4b3c-9127-ce7856dc4896
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.block.views_exposed_filter_block.search-page
+name: Views
+configEntityTypeId: component
+weight: 0
+items:
+  - block.views_exposed_filter_block.search-page

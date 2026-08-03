@@ -1,0 +1,11 @@
+uuid: b87cfd9b-5152-4c60-bd36-71ed4667e4eb
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.block.webform_block
+name: Webform
+configEntityTypeId: component
+weight: 0
+items:
+  - block.webform_block
