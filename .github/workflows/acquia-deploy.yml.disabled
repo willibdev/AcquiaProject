@@ -1,5 +1,0 @@
-name: Deploy to Acquia Cloud
-
-on:
-  pull_request:
-    branch: ['*']

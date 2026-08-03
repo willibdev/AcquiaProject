@@ -1,0 +1,56 @@
+name: Deploy to Acquia Cloud
+
+on:
+  pull_request:
+    types: [opened, reopened]
+
+env:
+  PHP_VERSION: 8.3
+  COMPOSER_VERSION: 2
+
+jobs:
+  run-phpcs:
+    runs-on: ubuntu-latest
+    # Disabling the job for Draft pull requests.
+    if: github.event.pull_request.draft == false
+    # Setting Github token to use Github CLI.
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # Using our custom composite action to run composer checks and composer install.
+      - name: composer validate and install
+        uses: ./.github/actions/composer
+        id: composer
+        with:
+          php_version: ${{ env.PHP_VERSION }}
+          COMPOSER_version: ${{ env.COMPOSER_VERSION }}
+
+      - name: Run PHPCS (Drupal Standards)
+        run: |
+          gh pr diff ${{ github.event.number }} --name-only | xargs find 2> /dev/null | xargs vendor/bin/phpcs -nq
+
+  run-phpstan:
+    runs-on: ubuntu-latest
+    # Disabling the job for Draft pull requests.
+    if: github.event.pull_request.draft == false
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # Using our custom composite action to run composer checks and composer install.
+      - name: composer validate and install
+        uses: ./.github/actions/composer
+        id: composer
+        with:
+          php_version: ${{ env.PHP_VERSION }}
+          COMPOSER_version: ${{ env.COMPOSER_VERSION }}
+
+      - name: Run PHPStan analysis
+        run: vendor/bin/phpstan analyse
