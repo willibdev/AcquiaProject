@@ -10,12 +10,21 @@ use League\OAuth2\Client\Token\AccessToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
 
+/**
+ * Documents this element.
+ */
 #[CoversClass(AcquiaIdProvider::class)]
 #[Group('acquia_id')]
 class AcquiaIdProviderTest extends UnitTestCase {
 
+  /**
+   * The provider under test.
+   */
   private AcquiaIdProvider $provider;
 
+  /**
+   * Documents this element.
+   */
   protected function setUp(): void {
     parent::setUp();
     $this->provider = new AcquiaIdProvider([
@@ -27,6 +36,9 @@ class AcquiaIdProviderTest extends UnitTestCase {
       ->setCloudApiBaseUri('https://cloud.acquia.com');
   }
 
+  /**
+   * Documents this element.
+   */
   public function testBaseAuthorizationUrl(): void {
     $this->assertSame(
       'https://id.acquia.com/oauth2/default/v1/authorize',
@@ -34,6 +46,9 @@ class AcquiaIdProviderTest extends UnitTestCase {
     );
   }
 
+  /**
+   * Documents this element.
+   */
   public function testBaseAccessTokenUrl(): void {
     $this->assertSame(
       'https://id.acquia.com/oauth2/default/v1/token',
@@ -41,6 +56,9 @@ class AcquiaIdProviderTest extends UnitTestCase {
     );
   }
 
+  /**
+   * Documents this element.
+   */
   public function testResourceOwnerDetailsUrl(): void {
     $token = new AccessToken(['access_token' => 'test', 'expires_in' => 3600]);
     $this->assertSame(
@@ -49,6 +67,9 @@ class AcquiaIdProviderTest extends UnitTestCase {
     );
   }
 
+  /**
+   * Documents this element.
+   */
   public function testAuthorizationUrlContainsExpectedScopes(): void {
     $url = $this->provider->getAuthorizationUrl();
     $query = parse_url($url, PHP_URL_QUERY);
@@ -60,6 +81,9 @@ class AcquiaIdProviderTest extends UnitTestCase {
     $this->assertStringContainsString('offline_access', $params['scope']);
   }
 
+  /**
+   * Documents this element.
+   */
   public function testAuthorizationUrlIncludesPkceChallenge(): void {
     $url = $this->provider->getAuthorizationUrl();
     $query = parse_url($url, PHP_URL_QUERY);

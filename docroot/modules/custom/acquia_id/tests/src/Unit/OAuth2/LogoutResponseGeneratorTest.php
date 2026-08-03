@@ -15,6 +15,9 @@ use League\OAuth2\Client\Token\AccessToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
 
+/**
+ * Documents this element.
+ */
 #[CoversClass(LogoutResponseGenerator::class)]
 #[Group('acquia_id')]
 class LogoutResponseGeneratorTest extends UnitTestCase {
@@ -24,6 +27,9 @@ class LogoutResponseGeneratorTest extends UnitTestCase {
   private const USER_ID = 42;
   private const STORAGE_KEY = 'acquia_id_access_token';
 
+  /**
+   * Documents this element.
+   */
   public function testRedirectsThroughIdpLogoutWhenTokenHasIdToken(): void {
     $token = new AccessToken([
       'access_token' => 'tok-123',
@@ -56,6 +62,9 @@ class LogoutResponseGeneratorTest extends UnitTestCase {
     $this->assertSame(0, $response->getCacheableMetadata()->getCacheMaxAge());
   }
 
+  /**
+   * Documents this element.
+   */
   public function testRedirectsToLogoutUriWhenNoTokenStored(): void {
     $repository = $this->buildRepository(NULL);
     $generator = new LogoutResponseGenerator(
@@ -71,6 +80,9 @@ class LogoutResponseGeneratorTest extends UnitTestCase {
     $this->assertSame(0, $response->getCacheableMetadata()->getCacheMaxAge());
   }
 
+  /**
+   * Documents this element.
+   */
   public function testRedirectsToLogoutUriWhenRefreshTokenTtlExpired(): void {
     // Token stored 91 minutes ago — beyond the 90-minute refresh TTL.
     $repository = $this->buildRepository(
@@ -120,6 +132,9 @@ class LogoutResponseGeneratorTest extends UnitTestCase {
     return new AccessTokenRepository($providerFactory, $userData, $time);
   }
 
+  /**
+   * Documents this element.
+   */
   private function buildAccount(): AccountInterface {
     $account = $this->createMock(AccountInterface::class);
     $account->method('id')->willReturn(self::USER_ID);

@@ -24,6 +24,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
+/**
+ * Documents this element.
+ */
 final class OAuth2Controller implements ContainerInjectionInterface {
 
   use LoggerChannelTrait;
@@ -157,6 +160,9 @@ final class OAuth2Controller implements ContainerInjectionInterface {
     return AccessResult::allowed();
   }
 
+  /**
+   * Documents this element.
+   */
   private function accessDeniedRedirect(string $logMessage = 'Access denied'): RedirectResponse {
     $this->getLogger('acquia_id')->error($this->t('Error: @message', ['@message' => $logMessage]));
     return new TrustedRedirectResponse($this->idpLogoutRedirectUri, Response::HTTP_SEE_OTHER);

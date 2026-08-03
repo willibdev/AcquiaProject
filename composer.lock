@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "afa6b5a16688b87dbcc2e2cc5f905287",
+    "content-hash": "873290cb3e0ec82f2d0e6bc83e9e19ce",
     "packages": [
         {
             "name": "acquia/drupal-environment-detector",
@@ -2000,6 +2000,55 @@
                 }
             ],
             "time": "2025-10-31T18:51:33+00:00"
+        },
+        {
+            "name": "drunomics/service-utils",
+            "version": "11.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/drunomics/service-utils.git",
+                "reference": "4f9c6bf049e82e6c30dc09e17df3918ec7e58bc8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/drunomics/service-utils/zipball/4f9c6bf049e82e6c30dc09e17df3918ec7e58bc8",
+                "reference": "4f9c6bf049e82e6c30dc09e17df3918ec7e58bc8",
+                "shasum": ""
+            },
+            "require-dev": {
+                "drupal/coder": "^8.3",
+                "drupal/core": "^11",
+                "drupal/pathauto": "^1.11",
+                "phpspec/prophecy-phpunit": "^2.0",
+                "phpunit/phpunit": "^10.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "drunomics\\ServiceUtils\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "drunomics GmbH",
+                    "email": "hello@drunomics.com"
+                }
+            ],
+            "description": "Provides setter injection traits in order to ease dependency injection of services.",
+            "homepage": "https://github.com/drunomics/service-utils",
+            "keywords": [
+                "dependency-injection",
+                "drupal"
+            ],
+            "support": {
+                "issues": "https://github.com/drunomics/service-utils/issues",
+                "source": "https://github.com/drunomics/service-utils/tree/11.0.0"
+            },
+            "time": "2025-10-28T14:01:51+00:00"
         },
         {
             "name": "drupal/address",
@@ -4858,6 +4907,72 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/ctools",
                 "issues": "https://www.drupal.org/project/issues/ctools"
+            }
+        },
+        {
+            "name": "drupal/custom_elements",
+            "version": "3.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/custom_elements.git",
+                "reference": "3.4.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/custom_elements-3.4.1.zip",
+                "reference": "3.4.1",
+                "shasum": "c462a5045f54e484a90f3eae9d5edfae2c348d83"
+            },
+            "require": {
+                "drunomics/service-utils": "*",
+                "drupal/core": "^10 || ^11"
+            },
+            "require-dev": {
+                "drupal/canvas": "1.x-dev",
+                "drupal/canvas_extjs": "1.x-dev",
+                "drupal/crop": "^2.4",
+                "drupal/entity_reference_revisions": "^1.12",
+                "drupal/lupus_ce_renderer": "^2.5.0",
+                "drupal/paragraphs": "^1.18",
+                "drupal/tablefield": "^3.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "3.4.1",
+                    "datestamp": "1777495514",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                },
+                "branch-alias": {
+                    "dev-8.x-1.x": "1.0.x-dev"
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "drunomics GmbH",
+                    "homepage": "https://www.drupal.org/user/16747",
+                    "email": "hello@drunomics.com"
+                },
+                {
+                    "name": "roderik",
+                    "homepage": "https://www.drupal.org/user/8841"
+                },
+                {
+                    "name": "useernamee",
+                    "homepage": "https://www.drupal.org/user/3542704"
+                }
+            ],
+            "description": "Render fields as custom elements.",
+            "homepage": "https://www.drupal.org/project/custom_elements",
+            "support": {
+                "source": "https://git.drupalcode.org/project/custom_elements"
             }
         },
         {

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset name="CS Drupal 11">
+  <description>PHP CodeSniffer configuration for Drupal 11.</description>
+
+  <rule ref="Drupal" />
+  <rule ref="DrupalPractice"/>
+  <arg name="extensions" value="php,module,inc,install,profile,theme,info,txt,yml"/>
+
+  <!-- Show progress and colors -->
+  <arg name="colors"/>
+
+  <!-- Directories to scan -->
+  <!-- <file>docroot/themes/custom</file> -->
+  <file>docroot/modules/custom</file>
+
+  <!-- Exclude third-party node modules or vendor code -->
+  <exclude-pattern>*/node_modules/*</exclude-pattern>
+  <exclude-pattern>*/vendor/*</exclude-pattern>
+
+  <!-- kill frivolous comments. -->
+  <exclude name="Drupal.Commenting.ClassComment.Missing"/>
+  <exclude name="Drupal.Commenting.DocComment.MissingShort" />
+  <exclude name="Drupal.Commenting.FunctionComment.Missing" />
+  <exclude name="Drupal.Commenting.FunctionComment.WrongStyle" />
+  <exclude name="Drupal.Commenting.VariableComment.Missing" />
+  <exclude name="Drupal.Commenting.VariableComment.MissingVar" />
+  <exclude name="Drupal.Commenting.FileComment.Missing" />
+  <exclude name="Drupal.Commenting.FunctionComment.MissingParamComment" />
+  <exclude name="Drupal.WhiteSpace.OpenTagNewline.BlankLine" />
+</ruleset>

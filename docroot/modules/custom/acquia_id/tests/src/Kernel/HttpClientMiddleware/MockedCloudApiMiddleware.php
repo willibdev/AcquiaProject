@@ -17,6 +17,9 @@ use Psr\Http\Message\RequestInterface;
  */
 final class MockedCloudApiMiddleware {
 
+  /**
+   * Documents this element.
+   */
   public function __invoke(): callable {
     return static function (callable $handler): callable {
       return static function (RequestInterface $request, array $options) use ($handler): PromiseInterface {

@@ -12,10 +12,16 @@ use GuzzleHttp\Client as HttpClient;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
 
+/**
+ * Documents this element.
+ */
 #[CoversClass(ClientFactory::class)]
 #[Group('acquia_trials_id')]
 class ClientFactoryTest extends UnitTestCase {
 
+  /**
+   * Documents this element.
+   */
   public function testGetReturnsClientWithCorrectConfiguration(): void {
     $httpClient = $this->createMock(HttpClient::class);
 

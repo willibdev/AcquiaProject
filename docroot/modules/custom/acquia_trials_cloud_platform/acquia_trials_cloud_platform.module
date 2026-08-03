@@ -19,4 +19,3 @@ function acquia_trials_cloud_platform_theme(): array {
     ],
   ];
 }
-

@@ -12,10 +12,16 @@ use League\OAuth2\Client\Token\AccessToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
 
+/**
+ * Documents this element.
+ */
 #[CoversClass(OAuth2AuthorizationEvent::class)]
 #[Group('acquia_id')]
 class OAuth2AuthorizationEventTest extends UnitTestCase {
 
+  /**
+   * Documents this element.
+   */
   public function testUserIsNullByDefault(): void {
     $event = new OAuth2AuthorizationEvent(
       $this->createMock(IdpProvider::class),
@@ -24,6 +30,9 @@ class OAuth2AuthorizationEventTest extends UnitTestCase {
     $this->assertNull($event->getUser());
   }
 
+  /**
+   * Documents this element.
+   */
   public function testSetAndGetUser(): void {
     $event = new OAuth2AuthorizationEvent(
       $this->createMock(IdpProvider::class),
@@ -34,6 +43,9 @@ class OAuth2AuthorizationEventTest extends UnitTestCase {
     $this->assertSame($user, $event->getUser());
   }
 
+  /**
+   * Documents this element.
+   */
   public function testProviderAndTokenAreAccessible(): void {
     $provider = $this->createMock(IdpProvider::class);
     $token = new AccessToken(['access_token' => 'tok-123', 'expires_in' => 3600]);

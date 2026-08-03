@@ -1,0 +1,4 @@
+{
+  "phpcs.executablePath": "${workspaceRoot}/vendor/bin/phpcs",
+  "phpcs.standard": "Drupal"
+}

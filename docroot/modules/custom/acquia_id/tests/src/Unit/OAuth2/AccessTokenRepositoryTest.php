@@ -14,15 +14,36 @@ use League\OAuth2\Client\Token\AccessToken;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
 
+/**
+ * Documents this element.
+ */
 #[CoversClass(AccessTokenRepository::class)]
 #[Group('acquia_id')]
 class AccessTokenRepositoryTest extends UnitTestCase {
 
+  /**
+   * The mocked user data service.
+   */
   private UserDataInterface $userData;
+
+  /**
+   * The mocked time service.
+   */
   private TimeInterface $time;
+
+  /**
+   * The mocked provider factory.
+   */
   private ProviderFactory $providerFactory;
+
+  /**
+   * The repository under test.
+   */
   private AccessTokenRepository $repository;
 
+  /**
+   * Documents this element.
+   */
   protected function setUp(): void {
     parent::setUp();
     $this->userData = $this->createMock(UserDataInterface::class);
@@ -35,6 +56,9 @@ class AccessTokenRepositoryTest extends UnitTestCase {
     );
   }
 
+  /**
+   * Documents this element.
+   */
   public function testStoreWritesTokenToUserData(): void {
     $token = new AccessToken(['access_token' => 'tok-abc', 'expires_in' => 3600]);
     $this->time->method('getCurrentTime')->willReturn(1000000);
@@ -49,6 +73,9 @@ class AccessTokenRepositoryTest extends UnitTestCase {
     $this->repository->store(42, $token);
   }
 
+  /**
+   * Documents this element.
+   */
   public function testGetReturnsNullWhenNoTokenStored(): void {
     $this->userData->method('get')
       ->with('acquia_id', 42, 'acquia_id_access_token')
@@ -57,6 +84,9 @@ class AccessTokenRepositoryTest extends UnitTestCase {
     $this->assertNull($this->repository->get(42));
   }
 
+  /**
+   * Documents this element.
+   */
   public function testGetReturnsNullWhenRefreshTokenTtlExceeded(): void {
     $now = 1000000;
     // Stored 91 minutes ago (exceeds 90-minute refresh TTL).
@@ -76,6 +106,9 @@ class AccessTokenRepositoryTest extends UnitTestCase {
     $this->assertNull($this->repository->get(42));
   }
 
+  /**
+   * Documents this element.
+   */
   public function testGetReturnsTokenWhenValid(): void {
     $now = 1000000;
     $token = new AccessToken([
@@ -96,6 +129,9 @@ class AccessTokenRepositoryTest extends UnitTestCase {
     $this->assertSame($token, $result);
   }
 
+  /**
+   * Documents this element.
+   */
   public function testGetRefreshesExpiredToken(): void {
     $now = 1000000;
     $expiredToken = new AccessToken([
@@ -140,6 +176,9 @@ class AccessTokenRepositoryTest extends UnitTestCase {
     $this->assertSame('tok-refreshed', $result->getToken());
   }
 
+  /**
+   * Documents this element.
+   */
   public function testDeleteRemovesTokenData(): void {
     $this->userData->expects($this->once())
       ->method('delete')
@@ -148,6 +187,9 @@ class AccessTokenRepositoryTest extends UnitTestCase {
     $this->repository->delete(42);
   }
 
+  /**
+   * Documents this element.
+   */
   public function testGetUserIdsWithTokens(): void {
     $this->userData->method('get')
       ->with('acquia_id', NULL, 'acquia_id_access_token')

@@ -9,6 +9,9 @@ use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use League\OAuth2\Client\Tool\BearerAuthorizationTrait;
 use Psr\Http\Message\ResponseInterface;
 
+/**
+ * Documents this element.
+ */
 abstract class IdpProvider extends AbstractProvider {
 
   use BearerAuthorizationTrait;
@@ -17,6 +20,7 @@ abstract class IdpProvider extends AbstractProvider {
    * {@inheritdoc}
    *
    * @return string[]
+   *   The default scopes for the provider.
    */
   protected function getDefaultScopes(): array {
     return [];

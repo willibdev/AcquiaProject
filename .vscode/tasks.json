@@ -1,0 +1,40 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "DDEV: Enable Xdebug",
+			"type": "shell",
+			"command": "ddev xdebug on",
+			"presentation": {
+				"reveal": "silent",
+				"close": true
+			}
+		},
+		{
+			"label": "DDEV: Disable Xdebug",
+			"type": "shell",
+			"command": "ddev xdebug off",
+			"presentation": {
+				"reveal": "silent",
+				"close": true
+			}
+		},
+    {
+      "label": "Format Drupal PHP",
+      "type": "shell",
+      "command": "phpcbf",
+      "args": [
+        "--standard=Drupal",
+        "--ignore-annotations",
+        "--extensions=inc,install,module,php,profile,theme",
+        "--tab-width=2",
+        "-vvv", // very verbose
+        "${file}"
+      ],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    }
+	]
+}

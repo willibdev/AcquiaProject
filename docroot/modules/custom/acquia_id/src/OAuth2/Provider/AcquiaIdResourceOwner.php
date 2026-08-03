@@ -14,7 +14,10 @@ use League\OAuth2\Client\Provider\ResourceOwnerInterface;
 final class AcquiaIdResourceOwner implements ResourceOwnerInterface {
 
   /**
+   * Constructs a resource owner from the provider response.
+   *
    * @phpstan-param Account $response
+   *   The decoded provider response data.
    */
   public function __construct(
     private readonly array $response,

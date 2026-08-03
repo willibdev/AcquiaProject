@@ -8,8 +8,14 @@ use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\Core\DependencyInjection\ServiceProviderBase;
 use Acquia\Drupal\RecommendedSettings\Helpers\EnvironmentDetector;
 
+/**
+ * Documents this element.
+ */
 final class AcquiaIdServiceProvider extends ServiceProviderBase {
 
+  /**
+   * Documents this element.
+   */
   public function alter(ContainerBuilder $container): void {
     parent::alter($container);
 

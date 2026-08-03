@@ -8,6 +8,9 @@ use Drupal\Component\Datetime\TimeInterface;
 use Drupal\user\UserDataInterface;
 use League\OAuth2\Client\Token\AccessToken;
 
+/**
+ * Documents this element.
+ */
 final class AccessTokenRepository {
 
   /**
@@ -27,6 +30,7 @@ final class AccessTokenRepository {
    * Gets the access token for the given user, refreshing it if expired.
    *
    * @throws \League\OAuth2\Client\Provider\Exception\IdentityProviderException
+   *   If the token cannot be refreshed.
    */
   public function get(int $id): ?AccessToken {
     $tokenData = $this->userData->get('acquia_id', $id, self::STORAGE_KEY);
@@ -48,6 +52,9 @@ final class AccessTokenRepository {
     return $token;
   }
 
+  /**
+   * Documents this element.
+   */
   public function store(int $id, AccessToken $token): void {
     $this->userData->set('acquia_id', $id, self::STORAGE_KEY, [
       'access_token' => $token,
@@ -55,12 +62,18 @@ final class AccessTokenRepository {
     ]);
   }
 
+  /**
+   * Documents this element.
+   */
   public function delete(int $id): void {
     $this->userData->delete('acquia_id', $id, self::STORAGE_KEY);
   }
 
   /**
+   * Gets the user IDs that currently have a stored token.
+   *
    * @return list<int|string>
+   *   The user IDs that currently have a stored token.
    */
   public function getUserIdsWithTokens(): array {
     return array_keys($this->userData->get('acquia_id', name: self::STORAGE_KEY));

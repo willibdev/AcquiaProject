@@ -14,10 +14,16 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
 
+/**
+ * Documents this element.
+ */
 #[CoversClass(Client::class)]
 #[Group('acquia_trials_id')]
 class ClientTest extends UnitTestCase {
 
+  /**
+   * Documents this element.
+   */
   public function testGetApplicationReturnsDecodedResponse(): void {
     $responseData = ['uuid' => 'app-uuid-123', 'name' => 'My App'];
 
@@ -39,6 +45,9 @@ class ClientTest extends UnitTestCase {
     $this->assertSame($responseData, $result);
   }
 
+  /**
+   * Documents this element.
+   */
   public function testGetApplicationThrowsOnHttpError(): void {
     $httpClient = $this->createMock(HttpClient::class);
     $httpClient->method('get')
