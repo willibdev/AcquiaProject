@@ -27,7 +27,7 @@ runs:
     - name: Check composer.lock
       shell: bash
       run: |
-        composer install--dry-run
+        composer install --dry-run
         if [ $? -ne 0 ]; then
           echo "composer.lock is out of date. Please run 'composer update' to generate an updated lock file."
           exit 1
