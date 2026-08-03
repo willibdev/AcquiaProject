@@ -1,0 +1,22 @@
+uuid: 7259f758-39e9-48e9-8f9d-a9ba96f57493
+langcode: en
+status: false
+dependencies: {  }
+_core:
+  default_config_hash: qoqwGrJ_BIjMweu4aQyjOnui1_OUFSTTwravxunNw9Y
+label: Placeholder
+id: block.dashboard_placeholder
+source: block
+source_local_id: dashboard_placeholder
+provider: dashboard
+active_version: c02b777b3b56af3d
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: dashboard_placeholder
+        label: Placeholder
+        label_display: '0'
+        provider: dashboard
+    fallback_metadata:
+      slot_definitions: null

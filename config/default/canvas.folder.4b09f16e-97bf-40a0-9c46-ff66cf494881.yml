@@ -1,0 +1,13 @@
+uuid: 4b09f16e-97bf-40a0-9c46-ff66cf494881
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.block.acquia_trials_checklist
+    - canvas.component.block.acquia_trials_cloud_platform
+name: 'Acquia Trials'
+configEntityTypeId: component
+weight: 0
+items:
+  - block.acquia_trials_checklist
+  - block.acquia_trials_cloud_platform

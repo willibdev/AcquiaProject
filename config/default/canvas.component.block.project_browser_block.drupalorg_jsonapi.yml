@@ -1,0 +1,29 @@
+uuid: e41b9846-42a0-45a4-8f7b-150d13151f6d
+langcode: en
+status: false
+dependencies:
+  module:
+    - project_browser
+_core:
+  default_config_hash: CSCY63PXw0VTUcjfzRcK7IrT2g7ZpV6BydB56ocun4g
+label: 'Contrib modules'
+id: block.project_browser_block.drupalorg_jsonapi
+source: block
+source_local_id: 'project_browser_block:drupalorg_jsonapi'
+provider: project_browser
+active_version: e37816eb455058be
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: 'project_browser_block:drupalorg_jsonapi'
+        label: 'Contrib modules'
+        label_display: '0'
+        provider: project_browser
+        paginate: true
+        page_sizes: '12, 24, 36, 48'
+        sort_options: null
+        default_sort: null
+        filters: null
+    fallback_metadata:
+      slot_definitions: null

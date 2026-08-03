@@ -1,0 +1,25 @@
+uuid: 4e865122-b0a1-44a9-a41b-be40bec3bc7b
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: Y_kW4_A5g_wobEIHnf_eFMtYzVvj_-g00kvE1Ke6P4I
+label: 'User: Account Blocked'
+id: user_blocked
+param_map:
+  -
+    source: account
+    destination: recipient_uid
+copied_fields:
+  from: false
+  reply_to: false
+  to: false
+  cc: false
+  bcc: false
+  subject: false
+  body_html: false
+  body_plain: false
+  attachments: false
+module: user
+key: status_blocked
+easy_email_type: user_blocked

@@ -1,0 +1,24 @@
+uuid: 5da11ba0-9ac4-409f-b6ef-2caecd56f7f5
+langcode: en
+status: true
+dependencies:
+  module:
+    - acquia_trials_checklist
+_core:
+  default_config_hash: n635gbaANVt2gr0C1zZ2-b5QsLBEhUrLEXufB23w0r8
+label: 'Acquia Trials Checklist'
+id: block.acquia_trials_checklist
+source: block
+source_local_id: acquia_trials_checklist
+provider: acquia_trials_checklist
+active_version: 5db6119509d7dd2c
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: acquia_trials_checklist
+        label: 'Acquia Trials Checklist'
+        label_display: '0'
+        provider: acquia_trials_checklist
+    fallback_metadata:
+      slot_definitions: null

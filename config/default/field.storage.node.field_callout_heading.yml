@@ -1,0 +1,23 @@
+uuid: cb316951-0b65-4c5a-9662-cec1954700d8
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+_core:
+  default_config_hash: FqbrI4juZwNN0tfZyAsqrTyTww29yKf2KSN2WsjJq08
+id: node.field_callout_heading
+field_name: field_callout_heading
+entity_type: node
+type: string
+settings:
+  max_length: 255
+  case_sensitive: false
+  is_ascii: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
