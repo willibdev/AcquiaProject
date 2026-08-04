@@ -13,7 +13,7 @@ jobs:
     concurrency: acquia-deploy
     steps:
       - name: Checkout main
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
@@ -40,6 +40,11 @@ jobs:
         env:
           ACLI_KEY: ${{ secrets.ACLI_KEY }}
           ACLI_SECRET: ${{ secrets.ACLI_SECRET }}
+
+      - name: Configure git identity
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
 
       - name: Build and push artifact to dist
         run: |

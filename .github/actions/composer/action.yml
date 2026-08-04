@@ -4,10 +4,7 @@ description: "Validate composer.json and composer.lock, then install dependencie
 inputs:
   php_version:
     description: "PHP Version to run."
-    default: "8.2"
-  composer_version:
-    description: "Composer version to run."
-    default: "2"
+    default: "8.3"
 
 runs:
   using: "composite"
@@ -16,7 +13,7 @@ runs:
       uses: shivammathur/setup-php@v2
       with:
         php-version: ${{ inputs.php_version }}
-        tools: composer:v${{ inputs.composer_version }}
+        tools: composer:v2
         extensions: dom, curl, libxml, mbstring, zip, pdo, mysql, pdo_mysql, bcmath, gd, exif, iconv
         coverage: none
 
