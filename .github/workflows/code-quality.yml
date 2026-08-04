@@ -1,8 +1,9 @@
-name: Deploy to Acquia Cloud
+name: Code quality (PHPCS & PHPStan)
 
 on:
   pull_request:
-    types: [opened, reopened]
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
 
 env:
   PHP_VERSION: 8.3
@@ -19,20 +20,20 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       # Using our custom composite action to run composer checks and composer install.
       - name: composer validate and install
         uses: ./.github/actions/composer
-        id: composer
         with:
           php_version: ${{ env.PHP_VERSION }}
-          COMPOSER_version: ${{ env.COMPOSER_VERSION }}
+          composer_version: ${{ env.COMPOSER_VERSION }}
 
       - name: Run PHPCS (Drupal Standards)
         run: |
-          gh pr diff ${{ github.event.number }} --name-only | xargs find 2> /dev/null | xargs vendor/bin/phpcs -nq
+          gh pr view ${{ github.event.number }} --json files \
+            --jq '.files[] | select(.status == "added" or .status == "modified") | .path' \
+            | grep -E '\.(php|module|inc|install|profile|theme|info|yml)$' \
+            | xargs -r -d '\n' vendor/bin/phpcs -nq
 
   run-phpstan:
     runs-on: ubuntu-latest
@@ -41,16 +42,13 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       # Using our custom composite action to run composer checks and composer install.
       - name: composer validate and install
         uses: ./.github/actions/composer
-        id: composer
         with:
           php_version: ${{ env.PHP_VERSION }}
-          COMPOSER_version: ${{ env.COMPOSER_VERSION }}
+          composer_version: ${{ env.COMPOSER_VERSION }}
 
       - name: Run PHPStan analysis
         run: vendor/bin/phpstan analyse
