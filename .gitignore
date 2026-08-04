@@ -118,3 +118,9 @@ oauth_keys/
 /.editorconfig
 /.gitattributes
 /.claude
+
+# Acquia CLI local config
+/.acquia-cli.yml
+
+# Local tooling
+/.atl/

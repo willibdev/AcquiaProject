@@ -1,0 +1,52 @@
+name: Deploy to Acquia (dist artifact)
+
+on:
+  workflow_dispatch:
+
+env:
+  PHP_VERSION: 8.3
+
+jobs:
+  deploy-acquia:
+    runs-on: ubuntu-latest
+    environment: acquia
+    concurrency: acquia-deploy
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ env.PHP_VERSION }}
+          tools: composer:v2
+          coverage: none
+
+      - name: Install Acquia CLI
+        run: |
+          curl -fsSL https://github.com/acquia/cli/releases/latest/download/acli.phar -o acli
+          chmod +x acli
+          sudo mv acli /usr/local/bin/acli
+          acli --version
+
+      - name: Configure SSH for Acquia git
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.ACQUIA_SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan svn-45062.prod.hosting.acquia.com >> ~/.ssh/known_hosts
+        env:
+          ACLI_KEY: ${{ secrets.ACLI_KEY }}
+          ACLI_SECRET: ${{ secrets.ACLI_SECRET }}
+
+      - name: Build and push artifact to dist
+        run: |
+          acli push:artifact --dir "$GITHUB_WORKSPACE" \
+            --destination-git-branch dist \
+            --destination-git-urls ppeb7510ae@svn-45062.prod.hosting.acquia.com:ppeb7510ae.git \
+            --no-interaction
+        env:
+          ACLI_KEY: ${{ secrets.ACLI_KEY }}
+          ACLI_SECRET: ${{ secrets.ACLI_SECRET }}
