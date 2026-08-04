@@ -7,7 +7,6 @@ on:
 
 env:
   PHP_VERSION: 8.3
-  COMPOSER_VERSION: 2
 
 jobs:
   run-phpcs:
@@ -19,14 +18,13 @@ jobs:
       GH_TOKEN: ${{ github.token }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       # Using our custom composite action to run composer checks and composer install.
       - name: composer validate and install
         uses: ./.github/actions/composer
         with:
           php_version: ${{ env.PHP_VERSION }}
-          composer_version: ${{ env.COMPOSER_VERSION }}
 
       - name: Run PHPCS (Drupal Standards)
         run: |
@@ -41,14 +39,13 @@ jobs:
     if: github.event.pull_request.draft == false
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       # Using our custom composite action to run composer checks and composer install.
       - name: composer validate and install
         uses: ./.github/actions/composer
         with:
           php_version: ${{ env.PHP_VERSION }}
-          composer_version: ${{ env.COMPOSER_VERSION }}
 
       - name: Run PHPStan analysis
         run: vendor/bin/phpstan analyse
