@@ -32,14 +32,12 @@ jobs:
           acli --version
 
       - name: Configure SSH for Acquia git
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.ACQUIA_SSH_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan svn-45062.prod.hosting.acquia.com >> ~/.ssh/known_hosts
-        env:
-          ACLI_KEY: ${{ secrets.ACLI_KEY }}
-          ACLI_SECRET: ${{ secrets.ACLI_SECRET }}
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.ACQUIA_SSH_KEY }}
+
+      - name: Add acquia host to known_hosts
+        run: ssh-keyscan -T 10 -H ${{ vars.ACQUIA_GIT_HOST }} >> ~/.ssh/known_hosts
 
       - name: Configure git identity
         run: |
@@ -50,8 +48,8 @@ jobs:
         run: |
           acli push:artifact --dir "$GITHUB_WORKSPACE" \
             --destination-git-branch dist \
-            --destination-git-urls ppeb7510ae@svn-45062.prod.hosting.acquia.com:ppeb7510ae.git \
+            --destination-git-urls ${{ vars.ACQUIA_GIT_URL }} \
             --no-interaction
         env:
-          ACLI_KEY: ${{ secrets.ACLI_KEY }}
-          ACLI_SECRET: ${{ secrets.ACLI_SECRET }}
+          ACLI_KEY: ${{ secrets.ACQUIA_API_KEY_ID }}
+          ACLI_SECRET: ${{ secrets.ACQUIA_API_KEY_SECRET }}
