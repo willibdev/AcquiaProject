@@ -14,8 +14,8 @@ dependencies:
 _core:
   default_config_hash: 4PTNWF3Nb7TGR550fgCSeTMbaQ6ygPCKX0InwMW7rSY
 id: haven_theme.header
-theme: haven_theme
 region: header
+theme: haven_theme
 component_tree:
   '0:2842f0a3-0215-4084-9598-4efdc2f8bb41':
     uuid: 2842f0a3-0215-4084-9598-4efdc2f8bb41

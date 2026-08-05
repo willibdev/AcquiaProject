@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - canvas.component.sdc.acquia_footer.footer-message
     - canvas.component.sdc.haven_theme.anchor
     - canvas.component.sdc.haven_theme.badge
     - canvas.component.sdc.haven_theme.blockquote
@@ -16,6 +17,7 @@ name: Base
 configEntityTypeId: component
 weight: 0
 items:
+  - sdc.acquia_footer.footer-message
   - sdc.haven_theme.anchor
   - sdc.haven_theme.badge
   - sdc.haven_theme.blockquote

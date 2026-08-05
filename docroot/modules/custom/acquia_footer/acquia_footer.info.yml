@@ -1,0 +1,7 @@
+name: 'Acquia Footer'
+type: module
+description: 'Custom SDC footer-message component exposed to Canvas for the footer region.'
+package: Custom
+core_version_requirement: ^10.3 || ^11
+dependencies:
+  - sdc
