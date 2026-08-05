@@ -8,6 +8,7 @@ dependencies:
     - canvas.component.block.system_menu_block.secondary
     - canvas.component.block.system_menu_block.social
     - canvas.component.block.webform_block
+    - canvas.component.sdc.acquia_footer.footer-message
     - canvas.component.sdc.haven_theme.footer
     - canvas.component.sdc.haven_theme.group
     - canvas.component.sdc.haven_theme.heading
@@ -78,7 +79,18 @@ component_tree:
       items_align: start
       flex_align: center
       radius: sm
-  '0:footer_last:0:group_slot:0:de72ac79-7c7a-487a-ac38-35ca5148e383':
+  '0:footer_last:0:group_slot:0:50f02414-5eac-4990-af8d-79e82c29c8a1':
+    parent_uuid: 5cc54bbe-edf7-4145-a559-c00be60db83d
+    slot: group_slot
+    uuid: 50f02414-5eac-4990-af8d-79e82c29c8a1
+    component_id: sdc.acquia_footer.footer-message
+    component_version: f0ba30f8b0096c2e
+    inputs:
+      title: 'Acquia by the numbers'
+      body:
+        value: '<p>Follow our latest news, best practices, and product tips from across the cloud of Drupal.</p>'
+        format: canvas_html_block
+  '0:footer_last:0:group_slot:1:de72ac79-7c7a-487a-ac38-35ca5148e383':
     parent_uuid: 5cc54bbe-edf7-4145-a559-c00be60db83d
     slot: group_slot
     uuid: de72ac79-7c7a-487a-ac38-35ca5148e383
@@ -90,7 +102,7 @@ component_tree:
       text_size: heading-responsive-3xl
       text_color: inverted
       align: left
-  '0:footer_last:0:group_slot:1:2b0ec5ca-36b3-4173-ba40-5eb1c6ba5cae':
+  '0:footer_last:0:group_slot:2:2b0ec5ca-36b3-4173-ba40-5eb1c6ba5cae':
     parent_uuid: 5cc54bbe-edf7-4145-a559-c00be60db83d
     slot: group_slot
     uuid: 2b0ec5ca-36b3-4173-ba40-5eb1c6ba5cae
@@ -103,7 +115,7 @@ component_tree:
       text_size: text-sm
       text_color: inverted
       columns: '1 column'
-  '0:footer_last:0:group_slot:2:d3846370-9e12-497c-8c98-124d76c47253':
+  '0:footer_last:0:group_slot:3:d3846370-9e12-497c-8c98-124d76c47253':
     parent_uuid: 5cc54bbe-edf7-4145-a559-c00be60db83d
     slot: group_slot
     uuid: d3846370-9e12-497c-8c98-124d76c47253

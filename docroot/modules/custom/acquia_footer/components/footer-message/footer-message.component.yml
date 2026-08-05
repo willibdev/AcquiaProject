@@ -1,0 +1,20 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json"
+name: Footer Message
+group: Base
+status: experimental
+props:
+  type: object
+  properties:
+    title:
+      type: string
+      title: Title
+      default: "Acquia by the numbers"
+      examples:
+        - "Acquia by the numbers"
+    body:
+      type: string
+      title: Body
+      contentMediaType: text/html
+      x-formatting-context: block
+      examples:
+        - "<p>Follow our latest news, best practices, and product tips from across the cloud of Drupal.</p>"

@@ -1,0 +1,52 @@
+uuid: d5204a13-f7f5-4051-ab96-6df2852ebfc0
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.canvas_html_block
+  module:
+    - acquia_footer
+    - text
+_core:
+  default_config_hash: W0zYaWhtcYHPGHgY7qz8HccSRQTIrVLzq3vF8Ih959g
+active_version: f0ba30f8b0096c2e
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions:
+        title:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Acquia by the numbers'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        body:
+          required: false
+          field_type: text_long
+          field_storage_settings: {  }
+          field_instance_settings:
+            allowed_formats:
+              - canvas_html_block
+          field_widget: text_textarea
+          default_value:
+            -
+              value: '<p>Follow our latest news, best practices, and product tips from across the cloud of Drupal.</p>'
+              format: canvas_html_block
+          expression: ℹ︎text_long␟processed
+          derived_schema_metadata:
+            string_shape:
+              contentMediaType: text/html
+              x-formatting-context: block
+    fallback_metadata:
+      slot_definitions: {  }
+label: 'Footer Message'
+id: sdc.acquia_footer.footer-message
+provider: acquia_footer
+source: sdc
+source_local_id: 'acquia_footer:footer-message'
