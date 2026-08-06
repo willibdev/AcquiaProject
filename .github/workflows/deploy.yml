@@ -58,13 +58,27 @@ jobs:
       # the environment, so post-code-deploy Cloud Hooks (drush config:import)
       # never run. Switch the environment's code to the `dist` branch so Cloud
       # re-points dev at the new commit and executes hooks/common/post-code-deploy.
-      - name: Deploy dist branch to environment
+      # The switch is fired without --task-wait so the trigger returns fast; the
+      # linked task notification is awaited separately, bounded by `timeout` so a
+      # hung task cannot block the job forever (the deploy still runs on Acquia).
+      - name: Trigger code switch to dist branch
+        id: code-switch
         run: |
           acli api:environments:code-switch \
             ${{ vars.ACQUIA_APP }}.${{ vars.ACQUIA_ENV }} \
             ${{ vars.ACQUIA_BRANCH }} \
-            --task-wait \
-            --no-interaction
+            --no-interaction \
+            > code-switch-task.json
+        env:
+          ACLI_KEY: ${{ secrets.ACQUIA_API_KEY_ID }}
+          ACLI_SECRET: ${{ secrets.ACQUIA_API_KEY_SECRET }}
+
+      - name: Wait for code switch task to complete
+        run: |
+          # Wait for the Acquia task referenced by the code-switch response.
+          # Bounded by `timeout` (GNU coreutils, available on ubuntu-latest) so a
+          # stuck task fails the job with a clear message instead of hanging.
+          timeout 1800 acli app:task-wait "$(cat code-switch-task.json)"
         env:
           ACLI_KEY: ${{ secrets.ACQUIA_API_KEY_ID }}
           ACLI_SECRET: ${{ secrets.ACQUIA_API_KEY_SECRET }}
