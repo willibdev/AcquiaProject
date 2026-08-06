@@ -49,7 +49,6 @@ jobs:
           acli push:artifact --dir="$GITHUB_WORKSPACE" \
             --destination-git-branch=${{ vars.ACQUIA_BRANCH }} \
             --destination-git-urls=${{ vars.ACQUIA_GIT_URL }} \
-            --task-wait \
             --no-interaction
         env:
           ACLI_KEY: ${{ secrets.ACQUIA_API_KEY_ID }}
