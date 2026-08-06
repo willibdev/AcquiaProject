@@ -46,9 +46,9 @@ jobs:
 
       - name: Push artifact and push to cloud
         run: |
-          acli push:artifact --dir "$GITHUB_WORKSPACE" \
-            --destination-git-branch dist \
-            --destination-git-urls ${{ vars.ACQUIA_GIT_URL }} \
+          acli push:artifact --dir="$GITHUB_WORKSPACE" \
+            --destination-git-branch=${{ vars.ACQUIA_BRANCH }} \
+            --destination-git-urls=${{ vars.ACQUIA_GIT_URL }} \
             --no-interaction
         env:
           ACLI_KEY: ${{ secrets.ACQUIA_API_KEY_ID }}
@@ -56,9 +56,10 @@ jobs:
 
       - name: Checkout the new branch on cloud
         run: |
-          acli app:task-wait "$(acli api:environments:code-switch \
-            ${{ vars.ACQUIA_APP }}.${{ vars.ACQUIA_ENV }} \
-            ${{ vars.ACQUIA_BRANCH }})"
+          acli api:environments:code-switch \
+          ${{ vars.ACQUIA_APP }}.${{ vars.ACQUIA_ENV }} ${{ vars.ACQUIA_BRANCH }} \
+          --task-wait
+          --no-interaction
         env:
           ACLI_KEY: ${{ secrets.ACQUIA_API_KEY_ID }}
           ACLI_SECRET: ${{ secrets.ACQUIA_API_KEY_SECRET }}
