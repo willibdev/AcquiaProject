@@ -53,3 +53,18 @@ jobs:
         env:
           ACLI_KEY: ${{ secrets.ACQUIA_API_KEY_ID }}
           ACLI_SECRET: ${{ secrets.ACQUIA_API_KEY_SECRET }}
+
+      # push:artifact only updates the `dist` branch. It does NOT deploy code to
+      # the environment, so post-code-deploy Cloud Hooks (drush config:import)
+      # never run. Switch the environment's code to the `dist` branch so Cloud
+      # re-points dev at the new commit and executes hooks/common/post-code-deploy.
+      - name: Deploy dist branch to environment
+        run: |
+          acli api:environments:code-switch \
+            ${{ vars.ACQUIA_APP }}.${{ vars.ACQUIA_ENV }} \
+            ${{ vars.ACQUIA_BRANCH }} \
+            --task-wait \
+            --no-interaction
+        env:
+          ACLI_KEY: ${{ secrets.ACQUIA_API_KEY_ID }}
+          ACLI_SECRET: ${{ secrets.ACQUIA_API_KEY_SECRET }}
